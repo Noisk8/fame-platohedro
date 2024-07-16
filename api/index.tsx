@@ -1,7 +1,7 @@
-import { Button, Frog,  } from "frog";
+import { Button, Frog } from "frog";
 import { devtools } from "frog/dev";
 import { serveStatic } from "frog/serve-static";
-// import { neynar } from 'frog/hubs'
+import { pinata } from "frog/hubs";
 import { handle } from "frog/vercel";
 
 // Uncomment to use Edge Runtime.
@@ -10,27 +10,29 @@ import { handle } from "frog/vercel";
 // }
 
 export const app = new Frog({
-  assetsPath: '/',
-  basePath :'/api',
-  title:'Platohedro'
+  assetsPath: "/",
+  basePath: "/api",
+  title: "Platohedro",
+  hub: pinata(),
+  //  hub: neynar({ apiKey: "NEYNAR_FROG_FM" }),
+});
 
-})
-
-
-
-app.frame('/', (c) => {
-  const { } = c
+app.frame("/", (c) => {
+  const {} = c;
   return c.res({
-
-  
-    image: "/public/fuma.jpg",
+    image:
+      "https://mde.org.co/mde15/wp-content/uploads/sites/2/2015/07/platohedro-977x554.jpg",
     intents: [
       <Button.Link href="https://platohedro.org/">Platohedro.org</Button.Link>,
-      <Button.Link href="https://www.patreon.com/platohedro">Patreon</Button.Link>,
-      <Button.Link href="https://platohedro.org/donaciones/">Donaciones</Button.Link>,
-    ]
-  })
-})
+      <Button.Link href="https://www.patreon.com/platohedro">
+        Patreon
+      </Button.Link>,
+      <Button.Link href="https://platohedro.org/donaciones/">
+        Donaciones
+      </Button.Link>,
+    ],
+  });
+});
 // @ts-ignore
 const isEdgeFunction = typeof EdgeFunction !== "undefined";
 const isProduction = isEdgeFunction || import.meta.env?.MODE !== "development";
