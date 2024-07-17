@@ -21,7 +21,9 @@ app.frame("/", (c) => {
   const {} = c;
   return c.res({
     image:
-      "https://mde.org.co/mde15/wp-content/uploads/sites/2/2015/07/platohedro-977x554.jpg",
+    '/public/fachada4.jpg',
+
+  
     intents: [
       <Button.Link href="https://platohedro.org/">Platohedro.org</Button.Link>,
       <Button.Link href="https://www.patreon.com/platohedro">
